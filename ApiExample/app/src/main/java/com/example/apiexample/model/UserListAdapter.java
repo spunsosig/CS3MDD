@@ -1,6 +1,7 @@
 package com.example.apiexample.model;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,8 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.apiexample.FirstFragmentDirections;
 import com.example.apiexample.R;
 import com.squareup.picasso.Picasso;
 
@@ -57,7 +60,7 @@ public class UserListAdapter extends
         notifyDataSetChanged();
     }
 
-    class UserViewHolder extends RecyclerView.ViewHolder {
+    class UserViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public final ImageView userImage;
         public final TextView usernameView;
         final UserListAdapter mAdapter;
@@ -69,6 +72,17 @@ public class UserListAdapter extends
             this.mAdapter = adapter;
             this.userImage = itemView.findViewById(R.id.userimage);
 
+            itemView.setOnClickListener(this);
+
+
+        }
+
+        @Override
+        public void onClick(View view) {
+            FirstFragmentDirections.ActionFirstFragmentToSecondFragment action =
+                    FirstFragmentDirections.actionFirstFragmentToSecondFragment(user);
+            Navigation.findNavController(view)
+                    .navigate(action);
         }
     }
 }

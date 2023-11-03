@@ -10,6 +10,8 @@ public class User implements Serializable {
     private String phone;
     private String cell;
     private String nat;
+    private Location location;
+
 
 
 
@@ -83,4 +85,11 @@ public class User implements Serializable {
         this.picture = picture;
     }
 
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 }
